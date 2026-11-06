@@ -45,27 +45,45 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero__copy">
         <p class="eyebrow"><span>01</span> коллекция реплик</p>
-        <h1 id="hero-title">Слова <br />для фарма<br /><em>ауры.</em></h1>
+        <h1 id="hero-title">
+          Слова <br />для фарма<br /><em>ауры.</em>
+        </h1>
         <p class="hero__lead">
           Ищите цитаты по названию аниме или имени персонажа — без регистрации и лишнего шума.
         </p>
+
         <div class="hero__facts" aria-label="О проекте">
-          <div><strong>Vite + JS</strong><span>учебный проект</span></div>
-          <div><strong>Animechan</strong><span>публичный REST API</span></div>
+          <div>
+            <strong>2 режима</strong>
+            <span>аниме / персонаж</span>
+          </div>
         </div>
       </div>
 
-      <aside class="foundation-card" aria-label="План приложения">
-        <p class="micro-label">первый этап</p>
-        <span class="foundation-card__mark" aria-hidden="true">“</span>
-        <h2>Основа будущего архива цитат</h2>
-        <p>
-          На следующих этапах здесь появятся случайная реплика, состояния загрузки и поиск по Animechan.
-        </p>
-        <div class="foundation-card__tags" aria-label="Будущие возможности">
-          <span>случайная цитата</span><span>поиск</span><span>ошибки</span>
+      <article class="featured-card" aria-labelledby="random-heading">
+        <div class="featured-card__topline">
+          <div>
+            <h2 id="random-heading">Случайная реплика</h2>
+          </div>
+          <span class="featured-card__index" aria-hidden="true">#∞</span>
         </div>
-      </aside>
+
+        <div class="featured-card__content" id="featured-content" aria-live="polite" aria-busy="true"></div>
+
+        <div class="featured-card__error" id="featured-error" role="alert" hidden>
+          <p id="featured-error-message"></p>
+          <button class="text-button" id="featured-retry" type="button">Повторить</button>
+        </div>
+
+        <div class="featured-card__footer">
+          <p>Каждый запрос — новая сцена.</p>
+          <button class="round-button" id="random-button" type="button" aria-label="Показать другую случайную цитату">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v6h-6" />
+            </svg>
+          </button>
+        </div>
+      </article>
     </section>
   </main>
 </body>
