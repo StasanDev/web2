@@ -39,3 +39,14 @@ async function request(path, { params = {}, signal } = {}) {
 export function getRandomQuote({ signal } = {}) {
   return request('/quotes/random', { signal })
 }
+
+export function searchQuotes({ mode, query, page = 1, signal } = {}) {
+  if (!['anime', 'character'].includes(mode)) {
+    throw new TypeError('Неизвестный режим поиска.')
+  }
+
+  return request('/quotes', {
+    params: { [mode]: query, page },
+    signal,
+  })
+}

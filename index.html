@@ -58,6 +58,11 @@
             <span>аниме / персонаж</span>
           </div>
         </div>
+
+        <a class="scroll-cue" href="#search">
+          <span aria-hidden="true">↓</span>
+          Перейти к поиску
+        </a>
       </div>
 
       <article class="featured-card" aria-labelledby="random-heading">
@@ -85,7 +90,115 @@
         </div>
       </article>
     </section>
+
+    <section class="search-section" id="search" aria-labelledby="search-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow eyebrow--dark"><span>02</span> поиск в архиве</p>
+          <h2 id="search-title">Чьи слова ищем?</h2>
+        </div>
+        <p>
+          Введите точное или знакомое название. Animechan подберёт ближайшее совпадение и вернёт до пяти цитат.
+        </p>
+      </div>
+
+      <form class="search-panel" id="search-form" novalidate>
+        <fieldset class="mode-switch">
+          <legend class="visually-hidden">Искать по аниме или персонажу</legend>
+          <label>
+            <input type="radio" name="mode" value="anime" checked />
+            <span>По аниме</span>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="character" />
+            <span>По персонажу</span>
+          </label>
+        </fieldset>
+
+        <div class="search-field">
+          <label class="visually-hidden" for="search-input">Название аниме</label>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m16 16 4 4" />
+          </svg>
+          <input id="search-input" name="query" type="search" placeholder="Например, Naruto" autocomplete="off"
+            minlength="2" required />
+          <button class="search-button" type="submit">
+            <span>Найти цитаты</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3 10h13M11 5l5 5-5 5" />
+            </svg>
+          </button>
+        </div>
+        <p class="field-error" id="field-error" aria-live="polite"></p>
+      </form>
+
+      <div class="suggestions" aria-label="Примеры поиска">
+        <span>Попробуйте:</span>
+        <button type="button" data-suggestion="Naruto" data-mode="anime">Naruto</button>
+        <button type="button" data-suggestion="One Piece" data-mode="anime">One Piece</button>
+        <button type="button" data-suggestion="Saitama" data-mode="character">Saitama</button>
+      </div>
+
+      <div class="results-heading" id="results-heading" hidden>
+        <div>
+          <p class="micro-label">результат запроса</p>
+          <h3 id="results-title"></h3>
+        </div>
+        <span class="result-count" id="result-count"></span>
+      </div>
+
+      <div class="results-state" id="results-state" aria-live="polite" aria-busy="false">
+        <div class="empty-prompt">
+          <span class="empty-prompt__icon" aria-hidden="true">“</span>
+          <div>
+            <strong>Начните поиск</strong>
+            <p>Выберите режим, введите название и нажмите «Найти цитаты».</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-grid" id="results-grid"></div>
+    </section>
+
+    <section class="about-strip" aria-label="Возможности приложения">
+      <article>
+        <span>01</span>
+        <h2>Живые данные</h2>
+        <p>Все цитаты загружаются напрямую из публичного Animechan API через <code>fetch</code>.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h2>Честные состояния</h2>
+        <p>Загрузка, пустой ответ и ошибка всегда видны — повторный запрос доступен в один клик.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h2>Бережные запросы</h2>
+        <p>Поиск запускается только по кнопке, а успешные ответы сохраняются на время сессии.</p>
+      </article>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="brand brand--footer" aria-label="Anime Echo">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 44 44">
+          <path
+            d="M8 10.5h22.5A5.5 5.5 0 0 1 36 16v11a5.5 5.5 0 0 1-5.5 5.5H20L12.2 39v-6.5H8A5.5 5.5 0 0 1 2.5 27V16A5.5 5.5 0 0 1 8 10.5Z" />
+          <path d="M12 19h15M12 25h10" />
+        </svg>
+      </span>
+      <span>
+        <strong>ANIME ECHO</strong>
+        <small>quote archive</small>
+      </span>
+    </div>
+    <p>Учебный проект на Vite + Vanilla JavaScript.</p>
+    <a href="https://animechan.io/docs" target="_blank" rel="noreferrer">Документация API ↗</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 
 </html>
