@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anime Echo — поиск цитат из аниме по сериалу или персонажу" />
+  <meta name="theme-color" content="#0b0d14" />
+  <title>Anime Echo — цитаты из аниме</title>
+  <script type="module" src="/src/main.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+
+  <div class="ambient ambient--coral" aria-hidden="true"></div>
+  <div class="ambient ambient--blue" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Anime Echo — на главную">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 44 44" role="img">
+          <path
+            d="M8 10.5h22.5A5.5 5.5 0 0 1 36 16v11a5.5 5.5 0 0 1-5.5 5.5H20L12.2 39v-6.5H8A5.5 5.5 0 0 1 2.5 27V16A5.5 5.5 0 0 1 8 10.5Z" />
+          <path d="M12 19h15M12 25h10" />
+        </svg>
+      </span>
+      <span>
+        <strong>ANIME ECHO</strong>
+        <small>quote archive</small>
+      </span>
+    </a>
+
+    <a class="api-badge" href="https://animechan.io/docs" target="_blank" rel="noreferrer"
+      aria-label="Открыть документацию Animechan API в новой вкладке">
+      <span class="api-badge__dot" aria-hidden="true"></span>
+      Animechan API
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M5 11 11 5M6 5h5v5" />
+      </svg>
+    </a>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="eyebrow"><span>01</span> коллекция реплик</p>
+        <h1 id="hero-title">Слова <br />для фарма<br /><em>ауры.</em></h1>
+        <p class="hero__lead">
+          Ищите цитаты по названию аниме или имени персонажа — без регистрации и лишнего шума.
+        </p>
+        <div class="hero__facts" aria-label="О проекте">
+          <div><strong>Vite + JS</strong><span>учебный проект</span></div>
+          <div><strong>Animechan</strong><span>публичный REST API</span></div>
+        </div>
+      </div>
+
+      <aside class="foundation-card" aria-label="План приложения">
+        <p class="micro-label">первый этап</p>
+        <span class="foundation-card__mark" aria-hidden="true">“</span>
+        <h2>Основа будущего архива цитат</h2>
+        <p>
+          На следующих этапах здесь появятся случайная реплика, состояния загрузки и поиск по Animechan.
+        </p>
+        <div class="foundation-card__tags" aria-label="Будущие возможности">
+          <span>случайная цитата</span><span>поиск</span><span>ошибки</span>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+
+</html>
