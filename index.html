@@ -1,96 +1,14 @@
 <!doctype html>
 <html lang="ru">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Anime Echo - поиск цитат из аниме по сериалу или персонажу" />
-  <meta name="theme-color" content="#0b0d14" />
-  <title>Anime Echo - цитаты из аниме</title>
-  <script type="module" src="/src/main.jsx"></script>
-</head>
-
-<body>
-  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
-
-  <div id="header-root"></div>
-
-  <main id="main-content" tabindex="-1">
-    <section class="hero page-width">
-      <div id="intro-root"></div>
-
-      <div id="random-quote-root"></div>
-    </section>
-
-    <section class="search-section" id="search">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow eyebrow--dark"><span>02</span> поиск в архиве</p>
-          <h2 id="search-title">Чьи слова ищем?</h2>
-        </div>
-        <p>
-          Введите точное или знакомое название. Animechan подберёт ближайшее совпадение и вернёт до пяти цитат.
-        </p>
-      </div>
-
-      <form class="search-panel" id="search-form" novalidate>
-        <fieldset class="mode-switch">
-          <legend class="visually-hidden">Искать по аниме или персонажу</legend>
-          <label>
-            <input type="radio" name="mode" value="anime" checked />
-            <span>По аниме</span>
-          </label>
-          <label>
-            <input type="radio" name="mode" value="character" />
-            <span>По персонажу</span>
-          </label>
-        </fieldset>
-
-        <div class="search-field">
-          <label class="visually-hidden" for="search-input">Название аниме</label>
-          <input id="search-input" name="query" type="search" placeholder="Например, Naruto" autocomplete="off"
-            minlength="2" required />
-          <button class="search-button" type="submit">
-            <span>Найти цитаты</span>
-          </button>
-        </div>
-        <p class="field-error" id="field-error"></p>
-      </form>
-
-      <div class="suggestions">
-        <span>Попробуйте:</span>
-        <button type="button" data-suggestion="Naruto" data-mode="anime">Naruto</button>
-        <button type="button" data-suggestion="One Piece" data-mode="anime">One Piece</button>
-        <button type="button" data-suggestion="Saitama" data-mode="character">Saitama</button>
-      </div>
-
-      <div class="results-heading" id="results-heading" hidden>
-        <div>
-          <p class="micro-label">результат запроса</p>
-          <h3 id="results-title"></h3>
-        </div>
-        <span class="result-count" id="result-count"></span>
-      </div>
-
-      <div class="results-state" id="results-state">
-        <div class="empty-prompt">
-          <span class="empty-prompt__icon">“</span>
-          <div>
-            <strong>Начните поиск</strong>
-            <p>Выберите режим, введите название и нажмите «Найти цитаты».</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="results-grid" id="results-grid"></div>
-    </section>
-
-    <div id="about-root"></div>
-  </main>
-
-  <div id="footer-root"></div>
-
-  <div class="toast" id="toast" role="status"></div>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Anime Echo - поиск цитат из аниме по названию или персонажу" />
+    <meta name="theme-color" content="#0b0d14" />
+    <title>Anime Echo - цитаты из аниме</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
