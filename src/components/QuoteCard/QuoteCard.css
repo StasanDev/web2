@@ -1,0 +1,50 @@
+.quote-card__credit span,
+.copy-status {
+  color: var(--muted);
+}
+
+.copy-status {
+  margin: 0;
+}
+
+.copy-status:empty {
+  display: none;
+}
+
+.quote-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper-bright);
+}
+
+.quote-card blockquote {
+  flex: 1;
+  font-size: 1.18rem;
+}
+
+.quote-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.quote-card__credit {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+  overflow-wrap: anywhere;
+}
+
+.quote-card__credit span,
+.copy-status {
+  font-size: 0.85rem;
+}
