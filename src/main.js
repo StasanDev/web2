@@ -1,11 +1,7 @@
-import { AnimechanError, getRandomQuote, searchQuotes } from './api/animechan.js'
+import { searchQuotes } from './api/animechan.js'
+import { getReadableError, normalizeQuote } from './quotes.js'
 
 const elements = {
-  featuredContent: document.querySelector('#featured-content'),
-  featuredError: document.querySelector('#featured-error'),
-  featuredErrorMessage: document.querySelector('#featured-error-message'),
-  featuredRetry: document.querySelector('#featured-retry'),
-  randomButton: document.querySelector('#random-button'),
   searchForm: document.querySelector('#search-form'),
   searchLabel: document.querySelector('label[for="search-input"]'),
   searchInput: document.querySelector('#search-input'),
@@ -31,7 +27,6 @@ const modeCopy = {
   },
 }
 
-let randomController
 let searchController
 let lastSearch = null
 let toastTimer
@@ -47,88 +42,6 @@ function createElement(tag, className, text) {
   if (className) element.className = className
   if (text !== undefined) element.textContent = text
   return element
-}
-
-function normaliseQuote(quote) {
-  return {
-    content: quote?.content?.trim() || 'Текст цитаты недоступен.',
-    anime: quote?.anime?.name?.trim() || 'Неизвестное аниме',
-    altAnime: quote?.anime?.altName?.trim() || '',
-    character: quote?.character?.name?.trim() || 'Неизвестный персонаж',
-  }
-}
-
-function getReadableError(error) {
-  if (error instanceof AnimechanError) {
-    if (error.status === 404) return 'По этому запросу цитаты не нашлись. Попробуйте другое написание.'
-    if (error.status === 429) return 'Дневной лимит Animechan исчерпан. Попробуйте снова позже.'
-    if (error.status >= 500) return 'Animechan временно недоступен. Попробуйте повторить запрос.'
-    return error.message
-  }
-
-  return 'Что-то пошло не так. Попробуйте повторить запрос.'
-}
-
-function renderFeaturedLoading() {
-  elements.featuredError.hidden = true
-  elements.featuredContent.hidden = false
-  elements.featuredContent.replaceChildren()
-
-  const skeleton = createElement('div', 'featured-skeleton')
-  skeleton.innerHTML = `
-    <span class="skeleton skeleton--quote"></span>
-    <span class="skeleton skeleton--quote skeleton--short"></span>
-    <span class="skeleton skeleton--meta"></span>
-  `
-  elements.featuredContent.append(skeleton)
-}
-
-function renderFeatured(quoteData) {
-  const quote = normaliseQuote(quoteData)
-  elements.featuredContent.replaceChildren()
-
-  const mark = createElement('span', 'quote-mark', '“')
-
-  const text = createElement('blockquote', 'featured-quote', quote.content)
-
-  const meta = createElement('div', 'featured-meta')
-  const person = createElement('div')
-  person.append(
-    createElement('span', null, 'Персонаж'),
-    createElement('strong', null, quote.character),
-  )
-  const anime = createElement('div')
-  anime.append(
-    createElement('span', null, 'Аниме'),
-    createElement('strong', null, quote.anime),
-  )
-  meta.append(person, anime)
-
-  elements.featuredContent.append(mark, text, meta)
-}
-
-function renderFeaturedError(error) {
-  elements.featuredContent.hidden = true
-  elements.featuredErrorMessage.textContent = getReadableError(error)
-  elements.featuredError.hidden = false
-}
-
-async function loadRandomQuote() {
-  randomController?.abort()
-  randomController = new AbortController()
-  elements.randomButton.disabled = true
-  elements.randomButton.classList.add('is-loading')
-  renderFeaturedLoading()
-
-  try {
-    const quote = await getRandomQuote({ signal: randomController.signal })
-    renderFeatured(quote)
-  } catch (error) {
-    if (error.name !== 'AbortError') renderFeaturedError(error)
-  } finally {
-    elements.randomButton.disabled = false
-    elements.randomButton.classList.remove('is-loading')
-  }
 }
 
 function renderResultsLoading() {
@@ -188,7 +101,7 @@ function renderEmptyResults(query) {
 }
 
 function createQuoteCard(quoteData, index) {
-  const quote = normaliseQuote(quoteData)
+  const quote = normalizeQuote(quoteData)
   const article = createElement('article', 'quote-card')
   article.style.setProperty('--delay', `${Math.min(index * 70, 280)}ms`)
 
@@ -353,8 +266,3 @@ document.querySelectorAll('[data-suggestion]').forEach((button) => {
     elements.searchForm.requestSubmit()
   })
 })
-
-elements.randomButton.addEventListener('click', loadRandomQuote)
-elements.featuredRetry.addEventListener('click', loadRandomQuote)
-
-loadRandomQuote()
