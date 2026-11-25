@@ -1,0 +1,25 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.topbar__api {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: #c0c0c8;
+  font-size: 0.85rem;
+}
+
+.topbar__api:hover {
+  color: var(--coral);
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding-block: 16px;
+  }
+}
