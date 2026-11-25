@@ -1,0 +1,156 @@
+.mode-switch input:checked + span {
+  background: var(--ink);
+  color: var(--paper-bright);
+}
+
+.suggestions button {
+  border-color: var(--border);
+  background: var(--paper-bright);
+  color: var(--ink);
+}
+
+.suggestions button:hover {
+  border-color: var(--ink);
+}
+
+.search-section {
+  padding: clamp(50px, 7vw, 105px) max(40px, calc((100% - 1340px) / 2));
+  border-radius: 34px 34px 0 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: end;
+  gap: clamp(20px, 5vw, 72px);
+}
+
+.section-heading h2 {
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+}
+
+.section-heading p {
+  max-width: 490px;
+  margin: 0 0 5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.search-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.mode-switch {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.mode-switch label {
+  position: relative;
+  cursor: pointer;
+}
+
+.mode-switch input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.mode-switch span {
+  display: grid;
+  min-height: 38px;
+  padding: 0 13px;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.mode-switch input:focus-visible + span {
+  outline: 3px solid #316db0;
+  outline-offset: 2px;
+}
+
+.search-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--ink);
+  border-radius: 10px;
+  background: var(--paper-bright);
+}
+
+.search-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--paper-bright);
+  color: var(--ink);
+}
+
+.search-field input::placeholder {
+  color: var(--muted);
+}
+
+.field-error {
+  margin: 0;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.suggestions > span {
+  margin-right: 4px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.suggestions button {
+  min-height: 36px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+@media (max-width: 760px) {
+  .section-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .search-section {
+    padding-inline: 18px;
+    border-radius: 22px 22px 0 0;
+  }
+
+  .search-field {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

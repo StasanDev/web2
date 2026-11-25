@@ -1,5 +1,3 @@
-@import './legacy.css' layer(legacy);
-
 :root {
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --ink: #0b0d14;
@@ -150,29 +148,4 @@ button:disabled {
   :root {
     --page-width: calc(100% - 36px);
   }
-}
-
-.hero__copy::after {
-  content: none;
-}
-
-.round-button,
-.copy-button {
-  width: auto;
-  padding-inline: 13px;
-  border-radius: 8px;
-}
-
-.search-field {
-  grid-template-columns: minmax(0, 1fr) auto;
-}
-
-@media (max-width: 720px) {
-  .search-field {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-#random-quote-root .featured-card {
-  transform: none;
 }
