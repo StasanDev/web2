@@ -172,3 +172,7 @@ button:disabled {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+#random-quote-root .featured-card {
+  transform: none;
+}
