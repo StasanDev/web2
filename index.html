@@ -4,76 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Anime Echo — поиск цитат из аниме по сериалу или персонажу" />
+  <meta name="description" content="Anime Echo - поиск цитат из аниме по сериалу или персонажу" />
   <meta name="theme-color" content="#0b0d14" />
-  <title>Anime Echo — цитаты из аниме</title>
-  <script type="module" src="/src/main.js"></script>
+  <title>Anime Echo - цитаты из аниме</title>
+  <script type="module" src="/src/main.jsx"></script>
 </head>
 
 <body>
   <a class="skip-link" href="#main-content">Перейти к содержанию</a>
 
-  <div class="ambient ambient--coral" aria-hidden="true"></div>
-  <div class="ambient ambient--blue" aria-hidden="true"></div>
+  <div id="header-root"></div>
 
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Anime Echo — на главную">
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 44 44" role="img">
-          <path
-            d="M8 10.5h22.5A5.5 5.5 0 0 1 36 16v11a5.5 5.5 0 0 1-5.5 5.5H20L12.2 39v-6.5H8A5.5 5.5 0 0 1 2.5 27V16A5.5 5.5 0 0 1 8 10.5Z" />
-          <path d="M12 19h15M12 25h10" />
-        </svg>
-      </span>
-      <span>
-        <strong>ANIME ECHO</strong>
-        <small>quote archive</small>
-      </span>
-    </a>
+  <main id="main-content" tabindex="-1">
+    <section class="hero page-width">
+      <div id="intro-root"></div>
 
-    <a class="api-badge" href="https://animechan.io/docs" target="_blank" rel="noreferrer"
-      aria-label="Открыть документацию Animechan API в новой вкладке">
-      <span class="api-badge__dot" aria-hidden="true"></span>
-      Animechan API
-      <svg viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M5 11 11 5M6 5h5v5" />
-      </svg>
-    </a>
-  </header>
-
-  <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero__copy">
-        <p class="eyebrow"><span>01</span> коллекция реплик</p>
-        <h1 id="hero-title">
-          Слова <br />для фарма<br /><em>ауры.</em>
-        </h1>
-        <p class="hero__lead">
-          Ищите цитаты по названию аниме или имени персонажа — без регистрации и лишнего шума.
-        </p>
-
-        <div class="hero__facts" aria-label="О проекте">
-          <div>
-            <strong>2 режима</strong>
-            <span>аниме / персонаж</span>
-          </div>
-        </div>
-
-        <a class="scroll-cue" href="#search">
-          <span aria-hidden="true">↓</span>
-          Перейти к поиску
-        </a>
-      </div>
-
-      <article class="featured-card" aria-labelledby="random-heading">
+      <article class="featured-card">
         <div class="featured-card__topline">
           <div>
             <h2 id="random-heading">Случайная реплика</h2>
           </div>
-          <span class="featured-card__index" aria-hidden="true">#∞</span>
         </div>
 
-        <div class="featured-card__content" id="featured-content" aria-live="polite" aria-busy="true"></div>
+        <div class="featured-card__content" id="featured-content"></div>
 
         <div class="featured-card__error" id="featured-error" role="alert" hidden>
           <p id="featured-error-message"></p>
@@ -81,17 +34,12 @@
         </div>
 
         <div class="featured-card__footer">
-          <p>Каждый запрос — новая сцена.</p>
-          <button class="round-button" id="random-button" type="button" aria-label="Показать другую случайную цитату">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v6h-6" />
-            </svg>
-          </button>
+          <button class="round-button" id="random-button" type="button">Другая цитата</button>
         </div>
       </article>
     </section>
 
-    <section class="search-section" id="search" aria-labelledby="search-title">
+    <section class="search-section" id="search">
       <div class="section-heading">
         <div>
           <p class="eyebrow eyebrow--dark"><span>02</span> поиск в архиве</p>
@@ -117,23 +65,16 @@
 
         <div class="search-field">
           <label class="visually-hidden" for="search-input">Название аниме</label>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5" />
-            <path d="m16 16 4 4" />
-          </svg>
           <input id="search-input" name="query" type="search" placeholder="Например, Naruto" autocomplete="off"
             minlength="2" required />
           <button class="search-button" type="submit">
             <span>Найти цитаты</span>
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M3 10h13M11 5l5 5-5 5" />
-            </svg>
           </button>
         </div>
-        <p class="field-error" id="field-error" aria-live="polite"></p>
+        <p class="field-error" id="field-error"></p>
       </form>
 
-      <div class="suggestions" aria-label="Примеры поиска">
+      <div class="suggestions">
         <span>Попробуйте:</span>
         <button type="button" data-suggestion="Naruto" data-mode="anime">Naruto</button>
         <button type="button" data-suggestion="One Piece" data-mode="anime">One Piece</button>
@@ -148,9 +89,9 @@
         <span class="result-count" id="result-count"></span>
       </div>
 
-      <div class="results-state" id="results-state" aria-live="polite" aria-busy="false">
+      <div class="results-state" id="results-state">
         <div class="empty-prompt">
-          <span class="empty-prompt__icon" aria-hidden="true">“</span>
+          <span class="empty-prompt__icon">“</span>
           <div>
             <strong>Начните поиск</strong>
             <p>Выберите режим, введите название и нажмите «Найти цитаты».</p>
@@ -161,44 +102,12 @@
       <div class="results-grid" id="results-grid"></div>
     </section>
 
-    <section class="about-strip" aria-label="Возможности приложения">
-      <article>
-        <span>01</span>
-        <h2>Живые данные</h2>
-        <p>Все цитаты загружаются напрямую из публичного Animechan API через <code>fetch</code>.</p>
-      </article>
-      <article>
-        <span>02</span>
-        <h2>Честные состояния</h2>
-        <p>Загрузка, пустой ответ и ошибка всегда видны — повторный запрос доступен в один клик.</p>
-      </article>
-      <article>
-        <span>03</span>
-        <h2>Бережные запросы</h2>
-        <p>Поиск запускается только по кнопке, а успешные ответы сохраняются на время сессии.</p>
-      </article>
-    </section>
+    <div id="about-root"></div>
   </main>
 
-  <footer class="footer">
-    <div class="brand brand--footer" aria-label="Anime Echo">
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 44 44">
-          <path
-            d="M8 10.5h22.5A5.5 5.5 0 0 1 36 16v11a5.5 5.5 0 0 1-5.5 5.5H20L12.2 39v-6.5H8A5.5 5.5 0 0 1 2.5 27V16A5.5 5.5 0 0 1 8 10.5Z" />
-          <path d="M12 19h15M12 25h10" />
-        </svg>
-      </span>
-      <span>
-        <strong>ANIME ECHO</strong>
-        <small>quote archive</small>
-      </span>
-    </div>
-    <p>Учебный проект на Vite + Vanilla JavaScript.</p>
-    <a href="https://animechan.io/docs" target="_blank" rel="noreferrer">Документация API ↗</a>
-  </footer>
+  <div id="footer-root"></div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status"></div>
 </body>
 
 </html>

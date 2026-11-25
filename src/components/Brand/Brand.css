@@ -1,0 +1,19 @@
+.brand {
+  display: inline-grid;
+  min-height: 44px;
+  align-content: center;
+  justify-self: start;
+  gap: 4px;
+  color: var(--paper);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.brand small {
+  color: #a8a9b1;
+  font-size: 0.68rem;
+  font-weight: 600;
+}

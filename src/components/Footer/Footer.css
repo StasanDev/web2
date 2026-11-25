@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px 0 34px;
+  border-top: 1px solid #ffffff24;
+  color: #c0c0c8;
+  font-size: 0.9rem;
+}
+
+.footer a:hover {
+  color: var(--coral);
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

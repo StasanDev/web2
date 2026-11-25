@@ -1,4 +1,3 @@
-import './styles.css'
 import { AnimechanError, getRandomQuote, searchQuotes } from './api/animechan.js'
 
 const elements = {
@@ -73,11 +72,9 @@ function getReadableError(error) {
 function renderFeaturedLoading() {
   elements.featuredError.hidden = true
   elements.featuredContent.hidden = false
-  elements.featuredContent.setAttribute('aria-busy', 'true')
   elements.featuredContent.replaceChildren()
 
   const skeleton = createElement('div', 'featured-skeleton')
-  skeleton.setAttribute('aria-label', 'Загрузка случайной цитаты')
   skeleton.innerHTML = `
     <span class="skeleton skeleton--quote"></span>
     <span class="skeleton skeleton--quote skeleton--short"></span>
@@ -89,10 +86,8 @@ function renderFeaturedLoading() {
 function renderFeatured(quoteData) {
   const quote = normaliseQuote(quoteData)
   elements.featuredContent.replaceChildren()
-  elements.featuredContent.setAttribute('aria-busy', 'false')
 
   const mark = createElement('span', 'quote-mark', '“')
-  mark.setAttribute('aria-hidden', 'true')
 
   const text = createElement('blockquote', 'featured-quote', quote.content)
 
@@ -114,7 +109,6 @@ function renderFeatured(quoteData) {
 
 function renderFeaturedError(error) {
   elements.featuredContent.hidden = true
-  elements.featuredContent.setAttribute('aria-busy', 'false')
   elements.featuredErrorMessage.textContent = getReadableError(error)
   elements.featuredError.hidden = false
 }
@@ -141,10 +135,9 @@ function renderResultsLoading() {
   elements.resultsGrid.replaceChildren()
   elements.resultsHeading.hidden = true
   elements.resultsState.hidden = false
-  elements.resultsState.setAttribute('aria-busy', 'true')
   elements.resultsState.innerHTML = `
     <div class="loading-state">
-      <span class="loader" aria-hidden="true"></span>
+      <span class="loader"></span>
       <div>
         <strong>Ищем нужные слова…</strong>
         <p>Запрашиваем цитаты у Animechan.</p>
@@ -157,10 +150,9 @@ function renderResultsError(error) {
   elements.resultsGrid.replaceChildren()
   elements.resultsHeading.hidden = true
   elements.resultsState.hidden = false
-  elements.resultsState.setAttribute('aria-busy', 'false')
   elements.resultsState.innerHTML = `
     <div class="message-state message-state--error" role="alert">
-      <span class="message-state__icon" aria-hidden="true">!</span>
+      <span class="message-state__icon">!</span>
       <div>
         <strong>Запрос не удался</strong>
         <p></p>
@@ -178,10 +170,9 @@ function renderEmptyResults(query) {
   elements.resultsGrid.replaceChildren()
   elements.resultsHeading.hidden = true
   elements.resultsState.hidden = false
-  elements.resultsState.setAttribute('aria-busy', 'false')
   elements.resultsState.innerHTML = `
     <div class="message-state">
-      <span class="message-state__icon" aria-hidden="true">?</span>
+      <span class="message-state__icon">?</span>
       <div>
         <strong>Ничего не найдено</strong>
         <p></p>
@@ -218,13 +209,7 @@ function createQuoteCard(quoteData, index) {
 
   const copyButton = createElement('button', 'copy-button')
   copyButton.type = 'button'
-  copyButton.setAttribute('aria-label', `Скопировать цитату персонажа ${quote.character}`)
-  copyButton.innerHTML = `
-    <svg viewBox="0 0 20 20" aria-hidden="true">
-      <rect x="6.5" y="6.5" width="9" height="9" rx="1.5"></rect>
-      <path d="M4.5 12.5h-1V4.8c0-.7.6-1.3 1.3-1.3h7.7v1"></path>
-    </svg>
-  `
+  copyButton.textContent = 'Копировать'
   copyButton.addEventListener('click', () => copyQuote(quote, copyButton))
 
   footer.append(credit, copyButton)
@@ -240,7 +225,6 @@ function renderResults(quotes, search, fromCache = false) {
 
   const copy = modeCopy[search.mode]
   elements.resultsState.hidden = true
-  elements.resultsState.setAttribute('aria-busy', 'false')
   elements.resultsHeading.hidden = false
   elements.resultsTitle.textContent = `${copy.preposition} «${search.query}»`
   elements.resultCount.textContent = `${quotes.length} ${getQuoteWord(quotes.length)}${fromCache ? ' · из кэша' : ''}`
@@ -278,7 +262,7 @@ function writeCache(search, quotes) {
   try {
     sessionStorage.setItem(`anime-echo:${key}`, JSON.stringify(quotes))
   } catch {
-    // The in-memory cache still protects the API limit when storage is unavailable.
+    return
   }
 }
 
@@ -313,7 +297,7 @@ async function runSearch(search, { ignoreCache = false } = {}) {
 }
 
 async function copyQuote(quote, button) {
-  const value = `«${quote.content}» — ${quote.character}, ${quote.anime}`
+  const value = `«${quote.content}» - ${quote.character}, ${quote.anime}`
 
   try {
     await navigator.clipboard.writeText(value)
